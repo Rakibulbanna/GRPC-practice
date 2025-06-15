@@ -2,6 +2,7 @@ import * as grpc from "@grpc/grpc-js";
 import * as protoLoader from "@grpc/proto-loader";
 import { PrismaClient } from "@prisma/client";
 import path from "path";
+import { ProtoGrpcType } from "./generated/todo";
 
 const prisma = new PrismaClient();
 
@@ -15,74 +16,17 @@ const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   oneofs: true,
 });
 
-interface Todo {
-  id: number;
-  title: string;
-  description: string;
-  completed: boolean;
-  created_at: string;
-  updated_at: string;
-}
-
-interface CreateTodoRequest {
-  title: string;
-  description: string;
-}
-
-interface GetTodoRequest {
-  id: number;
-}
-
-interface ListTodosRequest {
-  page?: number;
-  limit?: number;
-}
-
-interface ListTodosResponse {
-  todos: Todo[];
-  total: number;
-}
-
-interface UpdateTodoRequest {
-  id: number;
-  title?: string;
-  description?: string;
-  completed?: boolean;
-}
-
-interface DeleteTodoRequest {
-  id: number;
-}
-
-interface DeleteTodoResponse {
-  success: boolean;
-}
-
-interface TodoService {
-  service: {
-    createTodo: grpc.MethodDefinition<CreateTodoRequest, Todo>;
-    getTodo: grpc.MethodDefinition<GetTodoRequest, Todo>;
-    listTodos: grpc.MethodDefinition<ListTodosRequest, ListTodosResponse>;
-    updateTodo: grpc.MethodDefinition<UpdateTodoRequest, Todo>;
-    deleteTodo: grpc.MethodDefinition<DeleteTodoRequest, DeleteTodoResponse>;
-  };
-}
-
-const protoDescriptor = grpc.loadPackageDefinition(
+const proto = grpc.loadPackageDefinition(
   packageDefinition
-) as unknown as {
-  todo: {
-    TodoService: TodoService;
-  };
-};
-const todoService = protoDescriptor.todo.TodoService;
+) as unknown as ProtoGrpcType;
+const todoService = proto.todo.TodoService;
 
 const server = new grpc.Server();
 
 server.addService(todoService.service, {
   createTodo: async (
-    call: grpc.ServerUnaryCall<CreateTodoRequest, Todo>,
-    callback: grpc.sendUnaryData<Todo>
+    call: grpc.ServerUnaryCall<any, any>,
+    callback: grpc.sendUnaryData<any>
   ) => {
     try {
       console.log("Received createTodo request:", call.request);
@@ -121,8 +65,8 @@ server.addService(todoService.service, {
   },
 
   getTodo: async (
-    call: grpc.ServerUnaryCall<GetTodoRequest, Todo>,
-    callback: grpc.sendUnaryData<Todo>
+    call: grpc.ServerUnaryCall<any, any>,
+    callback: grpc.sendUnaryData<any>
   ) => {
     try {
       console.log("Received getTodo request:", call.request);
@@ -165,8 +109,8 @@ server.addService(todoService.service, {
   },
 
   listTodos: async (
-    call: grpc.ServerUnaryCall<ListTodosRequest, ListTodosResponse>,
-    callback: grpc.sendUnaryData<ListTodosResponse>
+    call: grpc.ServerUnaryCall<any, any>,
+    callback: grpc.sendUnaryData<any>
   ) => {
     try {
       console.log("Received listTodos request:", call.request);
@@ -204,8 +148,8 @@ server.addService(todoService.service, {
   },
 
   updateTodo: async (
-    call: grpc.ServerUnaryCall<UpdateTodoRequest, Todo>,
-    callback: grpc.sendUnaryData<Todo>
+    call: grpc.ServerUnaryCall<any, any>,
+    callback: grpc.sendUnaryData<any>
   ) => {
     try {
       console.log("Received updateTodo request:", call.request);
@@ -246,8 +190,8 @@ server.addService(todoService.service, {
   },
 
   deleteTodo: async (
-    call: grpc.ServerUnaryCall<DeleteTodoRequest, DeleteTodoResponse>,
-    callback: grpc.sendUnaryData<DeleteTodoResponse>
+    call: grpc.ServerUnaryCall<any, any>,
+    callback: grpc.sendUnaryData<any>
   ) => {
     try {
       console.log("Received deleteTodo request:", call.request);
