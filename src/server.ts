@@ -5,7 +5,7 @@ import path from "path";
 import { TodoController } from "./controllers/todo.controller";
 import { ProtoGrpcType } from "./generated/todo";
 
-const PROTO_PATH = path.join(__dirname, "../proto/todo.proto");
+const PROTO_PATH = path.join(process.cwd(), "proto/todo.proto");
 
 const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   keepCase: true,
