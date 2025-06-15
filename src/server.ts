@@ -25,6 +25,29 @@ const todoController = new TodoController();
 
 server.addService(todoService.service, todoController);
 
+// Handle process termination
+process.on("SIGTERM", () => {
+  server.tryShutdown(() => {
+    console.log("Server shutdown complete");
+    process.exit(0);
+  });
+});
+
+process.on("SIGINT", () => {
+  server.tryShutdown(() => {
+    console.log("Server shutdown complete");
+    process.exit(0);
+  });
+});
+
+// Handle nodemon restart
+process.on("SIGUSR2", () => {
+  server.tryShutdown(() => {
+    console.log("Server shutdown complete");
+    process.exit(0);
+  });
+});
+
 server.bindAsync(
   "0.0.0.0:50051",
   grpc.ServerCredentials.createInsecure(),

@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/server.js",
-    "dev": "ts-node src/server.ts",
+    "dev": "nodemon",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "generate:types": "ts-node scripts/generate-types.ts"
@@ -29,6 +29,7 @@
     "@types/node": "^20.19.0",
     "grpc-tools": "^1.13.0",
     "grpc_tools_node_protoc_ts": "^5.3.3",
+    "nodemon": "^3.1.10",
     "prisma": "^5.22.0",
     "ts-node": "^10.9.2",
     "ts-proto": "^2.7.5",
