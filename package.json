@@ -8,7 +8,8 @@
     "start": "node dist/server.js",
     "dev": "ts-node src/server.ts",
     "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate dev"
+    "prisma:migrate": "prisma migrate dev",
+    "generate:types": "ts-node scripts/generate-types.ts"
   },
   "keywords": [
     "grpc",
@@ -24,9 +25,11 @@
     "@prisma/client": "^5.22.0"
   },
   "devDependencies": {
+    "@types/google-protobuf": "^3.15.12",
     "@types/node": "^20.19.0",
     "prisma": "^5.22.0",
     "ts-node": "^10.9.2",
+    "ts-proto": "^2.7.5",
     "typescript": "^5.8.3"
   }
 }
