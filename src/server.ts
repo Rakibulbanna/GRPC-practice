@@ -3,7 +3,7 @@ import * as protoLoader from "@grpc/proto-loader";
 import path from "path";
 
 import { TodoController } from "./controllers/todo.controller";
-import { ProtoGrpcType } from "./generated/todo";
+import { ProtoGrpcType } from "@proto/todo";
 
 const PROTO_PATH = path.join(process.cwd(), "proto/todo.proto");
 

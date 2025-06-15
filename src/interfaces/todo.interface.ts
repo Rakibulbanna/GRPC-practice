@@ -1,12 +1,12 @@
 import { ServerUnaryCall, sendUnaryData } from "@grpc/grpc-js";
-import { Todo } from "../generated/todo/Todo";
-import { CreateTodoRequest } from "../generated/todo/CreateTodoRequest";
-import { GetTodoRequest } from "../generated/todo/GetTodoRequest";
-import { ListTodosRequest } from "../generated/todo/ListTodosRequest";
-import { ListTodosResponse } from "../generated/todo/ListTodosResponse";
-import { UpdateTodoRequest } from "../generated/todo/UpdateTodoRequest";
-import { DeleteTodoRequest } from "../generated/todo/DeleteTodoRequest";
-import { DeleteTodoResponse } from "../generated/todo/DeleteTodoResponse";
+import { Todo } from "@proto/todo/Todo";
+import { CreateTodoRequest } from "@proto/todo/CreateTodoRequest";
+import { GetTodoRequest } from "@proto/todo/GetTodoRequest";
+import { ListTodosRequest } from "@proto/todo/ListTodosRequest";
+import { ListTodosResponse } from "@proto/todo/ListTodosResponse";
+import { UpdateTodoRequest } from "@proto/todo/UpdateTodoRequest";
+import { DeleteTodoRequest } from "@proto/todo/DeleteTodoRequest";
+import { DeleteTodoResponse } from "@proto/todo/DeleteTodoResponse";
 
 export type {
   Todo as ITodo,

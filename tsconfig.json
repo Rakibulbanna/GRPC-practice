@@ -3,15 +3,31 @@
         "target": "es2018",
         "module": "commonjs",
         "outDir": "./dist",
-        "rootDir": "./src",
+        "rootDir": ".",
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
+        "baseUrl": ".",
+        "moduleResolution": "node",
+        "paths": {
+            "@/*": [
+                "src/*"
+            ],
+            "@proto/*": [
+                "proto/generated/*"
+            ]
+        }
+    },
+    "ts-node": {
+        "require": [
+            "tsconfig-paths/register"
+        ]
     },
     "include": [
-        "src/**/*"
+        "src/**/*",
+        "proto/generated/**/*"
     ],
     "exclude": [
         "node_modules",

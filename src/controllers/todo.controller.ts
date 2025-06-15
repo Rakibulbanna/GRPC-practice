@@ -3,7 +3,7 @@ import {
   sendUnaryData,
   UntypedServiceImplementation,
 } from "@grpc/grpc-js";
-import { TodoServiceHandlers } from "../generated/todo/TodoService";
+
 import {
   ITodoService,
   ICreateTodoRequest,
@@ -167,15 +167,3 @@ export class TodoController implements ITodoService {
     }
   }
 }
-
-// Type assertion to satisfy TodoServiceHandlers
-(TodoController.prototype as unknown as TodoServiceHandlers).CreateTodo =
-  TodoController.prototype.CreateTodo;
-(TodoController.prototype as unknown as TodoServiceHandlers).GetTodo =
-  TodoController.prototype.GetTodo;
-(TodoController.prototype as unknown as TodoServiceHandlers).ListTodos =
-  TodoController.prototype.ListTodos;
-(TodoController.prototype as unknown as TodoServiceHandlers).UpdateTodo =
-  TodoController.prototype.UpdateTodo;
-(TodoController.prototype as unknown as TodoServiceHandlers).DeleteTodo =
-  TodoController.prototype.DeleteTodo;
